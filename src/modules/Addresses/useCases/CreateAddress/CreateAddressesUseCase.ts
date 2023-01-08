@@ -1,6 +1,7 @@
 import { Address } from '@prisma/client'
 
 import { prisma } from '../../../../prisma/PrismaClient'
+import { AppError } from './../../../../errors/AppError';
 import { AddressDTO } from './../../dtos/AddressDTO';
 
 export class CreateAddressesUseCase{
@@ -14,7 +15,7 @@ export class CreateAddressesUseCase{
 
         if(!verifyUser){
             
-            throw new Error('User not found')
+            throw new AppError('User not found')
         }
 
     const address = await prisma.address.create({
